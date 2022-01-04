@@ -1,0 +1,83 @@
+{
+  "name": "Delete_selected_annotations",
+  "description": "To delete manual annotations based on selected terms from image list",
+  "schema-version": "cytomine-0.1",
+  "container-image": {
+    "image": "mizjaggy18/s_delete_selected_annotations",
+    "type": "singularity"
+  },
+  "command-line": "[CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_IMAGES] [CYTOMINE_ID_TERMS]",
+  "inputs": [
+    {
+      "id": "cytomine_host",      
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine host",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {
+      "id": "cytomine_public_key",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine public key",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {  
+      "id": "cytomine_private_key",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine private key",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {
+      "id": "cytomine_id_project",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine project ID",
+      "set-by-server": true,
+      "optional": false,
+      "type": "Number"
+    },
+    {
+      "id": "cytomine_id_software",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine software ID",
+      "set-by-server": true,
+      "optional": false,
+      "type": "Number"
+    }, 
+    {
+      "id": "cytomine_id_images",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Image IDs",
+      "description": "Images to delete the manual annotations",
+      "set-by-server": false,
+      "optional": false,      
+      "type": "ListDomain",
+      "uri": "/api/project/$currentProject$/imageinstance.json",
+      "uri-sort-attribute": "instanceFilename",
+      "uri-print-attribute": "instanceFilename"
+    }, 
+    {
+      "id": "cytomine_id_terms",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Term IDs",
+      "description": "Associated terms to delete",
+      "set-by-server": false,
+      "optional": false,      
+      "type": "ListDomain",
+      "uri": "/api/ontology/$currentOntology$/term.json",
+      "uri-sort-attribute": "name",
+      "uri-print-attribute": "name"
+    }
+  ]
+}
