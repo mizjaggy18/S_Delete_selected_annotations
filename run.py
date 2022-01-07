@@ -81,7 +81,8 @@ def run(cyto_job, parameters):
     #     print(id_image) 
 
     #Go over images
-    for id_image in list_imgs2:       
+    for (i, id_image) in enumerate(list_imgs2):  
+        progress=2+i
         for id_term in list_terms2:
             # Get the list of annotations
             annotations = AnnotationCollection()
@@ -89,10 +90,14 @@ def run(cyto_job, parameters):
             annotations.term = id_term
             annotations.project = project.id
             annotations.fetch()
-            print(annotations)
+            print("Total annotations: ",len(annotations))
+            progress_delta=100-(progress)/len(annotations)            
 
             for annotation in annotations:
+                progress += progress_delta
+                job.update(status=Job.RUNNING, progress=progress, statusComment="Deleting %s from %s...",annotation.id,id_image)
                 annotation.delete()
+                
 
 if __name__ == "__main__":
     logging.debug("Command: %s", sys.argv)
