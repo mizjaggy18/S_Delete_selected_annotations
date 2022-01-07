@@ -95,7 +95,7 @@ def run(cyto_job, parameters):
 
             for annotation in annotations:
                 progress += progress_delta
-                job.update(status=Job.RUNNING, progress=progress, statusComment="Deleting %s from %s...",annotation.id,id_image)
+                job.update(status=Job.RUNNING, progress=progress, statusComment="Deleting %s from %s..." % (str(annotation.id),str(id_image)))
                 annotation.delete()
                 
 
