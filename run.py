@@ -91,7 +91,10 @@ def run(cyto_job, parameters):
             annotations.project = project.id
             annotations.fetch()
             print("Total annotations: ",len(annotations))
-            progress_delta=100-(progress)/len(annotations)            
+            if len(annotations) > 0:
+                progress_delta=100-(progress)/len(annotations)
+            else:
+                progress_delta=100-(progress)/len(list_imgs2)
 
             for annotation in annotations:
                 progress += progress_delta
