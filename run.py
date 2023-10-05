@@ -91,14 +91,14 @@ def run(cyto_job, parameters):
             annotations.project = project.id
             annotations.fetch()
             print("Total annotations: ",len(annotations))
-            if len(annotations) > 0:
-                progress_delta=100-(progress)/len(annotations)
-            else:
-                progress_delta=100-(progress)/len(list_imgs2)
-
+            # if len(annotations) > 0:
+            #     progress_delta=100-(progress)/len(annotations)
+            # else:
+            #     progress_delta=100-(progress)/len(list_imgs2
+            # progress += progress_delta
+                    
+            job.update(status=Job.RUNNING, progress=30, statusComment="Deleting term %s from %s..." % (str(id_term),str(id_image)))
             for annotation in annotations:
-                progress += progress_delta
-                job.update(status=Job.RUNNING, progress=progress, statusComment="Deleting %s from %s..." % (str(annotation.id),str(id_image)))
                 annotation.delete()
                 
 
