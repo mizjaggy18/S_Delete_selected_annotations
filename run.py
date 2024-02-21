@@ -89,8 +89,8 @@ def run(cyto_job, parameters):
             annotations.image = id_image
             annotations.term = id_term
             annotations.project = project.id
-            if parameters.cytomine_user_id:
-                annotations.user=parameters.cytomine_user_id
+            if parameters.cytomine_id_user:
+                annotations.user=parameters.cytomine_id_user
             annotations.fetch()
             print("Total annotations: ",len(annotations))
             # if len(annotations) > 0:
