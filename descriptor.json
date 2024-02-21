@@ -6,7 +6,7 @@
     "image": "mizjaggy18/s_delete_selected_annotations",
     "type": "singularity"
   },
-  "command-line": "[CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_IMAGES] [CYTOMINE_ID_TERMS]",
+  "command-line": "[CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_IMAGES] [CYTOMINE_ID_USER] [CYTOMINE_ID_TERMS]",
   "inputs": [
     {
       "id": "cytomine_host",      
@@ -65,7 +65,20 @@
       "uri": "/api/project/$currentProject$/imageinstance.json",
       "uri-sort-attribute": "instanceFilename",
       "uri-print-attribute": "instanceFilename"
-    }, 
+    },
+    {
+      "id": "cytomine_id_user",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine User ID",
+      "description": "ROI term from specific user",
+      "set-by-server": false,
+      "optional": true,      
+      "type": "ListDomain",
+      "uri": "/api/project/$currentProject$/user.json",
+      "uri-sort-attribute": "username",
+      "uri-print-attribute": "username"
+    },     
     {
       "id": "cytomine_id_terms",
       "value-key": "[@ID]",
