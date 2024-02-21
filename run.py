@@ -33,7 +33,7 @@ def run(cyto_job, parameters):
     logging.info("Entering run(cyto_job=%s, parameters=%s)", cyto_job, parameters)
 
     job = cyto_job.job
-    project = cyto_job.project        
+    project = cyto_job.project
 
     terms = TermCollection()
     terms.project = project.id
@@ -89,6 +89,8 @@ def run(cyto_job, parameters):
             annotations.image = id_image
             annotations.term = id_term
             annotations.project = project.id
+            if parameters.cytomine_user_id:
+                annotations.user=parameters.cytomine_user_id
             annotations.fetch()
             print("Total annotations: ",len(annotations))
             # if len(annotations) > 0:
